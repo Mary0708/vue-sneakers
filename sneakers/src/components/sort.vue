@@ -1,9 +1,22 @@
+<script setup>
+import { ref, watch } from 'vue'
+import axios from 'axios'
+
+const catalog = ref([])
+const sortBy = ref('')
+const searchQuery = ref('')
+
+const onChangeSelect = (event) => {
+  sortBy.value = event.target.value
+}
+</script>
+
 <template>
   <div class="flex gap-4">
-    <select class="py-2 px-3 border rounded-md outline-none">
-      <option>По названию</option>
-      <option>По цене (дорогие)</option>
-      <option>По цене (дешевые)</option>
+    <select @change="onChangeSelect" class="py-2 px-3 border rounded-md outline-none">
+      <option value="name">По названию</option>
+      <option value="price">По цене (дорогие)</option>
+      <option value="-price">По цене (дешевые)</option>
     </select>
 
     <div class="relative">

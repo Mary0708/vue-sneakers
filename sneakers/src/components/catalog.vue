@@ -5,9 +5,7 @@ defineProps({
   catalog: Array
 })
 
-const onClick = () => {
-  console.log('click')
-}
+const emit = defineEmits(['addToFavorite', 'addToCart'])
 </script>
 
 <template>
@@ -15,12 +13,14 @@ const onClick = () => {
     <Card
       v-for="item in catalog"
       :key="item.id"
-      :is-favorite="false"
+      :id="item.id"
+      :isFavorite="item.isFavorite"
       :image-url="item.imageUrl"
       :title="item.title"
       :price="item.price"
-      :is-added="true"
-      :onclick="onClick"
+      :isAdded="item.isAdded"
+      :onClickFavorite="() => emit('addToFavorite', item)"
+      :onClickAdd="() => emit('addToCart', item)"
     />
   </div>
 </template>
