@@ -16,6 +16,7 @@ defineProps({
     class="bg-white relative m-10 border-slate-100 rounded-3xl p-8 cursor-pointer hover:-translate-y-2 hover:shadow-xl transition"
   >
     <img
+      v-if="onClickFavorite"
       :src="isFavorite ? '/like-2.svg' : '/like-1.svg'"
       alt="Like 1 "
       class="absolute top-8 left-8"
@@ -29,7 +30,12 @@ defineProps({
         <b>{{ price }} руб.</b>
       </div>
 
-      <img @click="onClickAdd" :src="!isAdded ? '/plus.svg' : '/checked.svg'" alt="Plus " />
+      <img
+        v-if="onClickAdd"
+        @click="onClickAdd"
+        :src="!isAdded ? '/plus.svg' : '/checked.svg'"
+        alt="Plus "
+      />
     </div>
   </div>
 </template>
